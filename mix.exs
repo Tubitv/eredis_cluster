@@ -25,8 +25,9 @@ defmodule EredisCluster.Mixfile do
 
   defp package do
     [files: ~w(include src mix.exs rebar.config README.md LICENSE VERSION),
+     organization: "tubitv",
      maintainers: ["Adrien Moreau"],
      licenses: ["MIT"],
-     links: %{"GitHub" => "https://github.com/adrienmo/eredis_cluster"}]
+     links: %{"GitHub" => "https://github.com/tubitv/eredis_cluster"}]
   end
 end
