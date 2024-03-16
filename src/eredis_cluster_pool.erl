@@ -33,7 +33,8 @@ create(Host, Port) ->
             PoolArgs = [{name, {local, PoolName}},
                         {worker_module, eredis_cluster_pool_worker},
                         {size, Size},
-                        {max_overflow, MaxOverflow}],
+                        {max_overflow, MaxOverflow},
+                        {strategy, fifo}],
 
             ChildSpec = poolboy:child_spec(PoolName, PoolArgs, WorkerArgs),
 
