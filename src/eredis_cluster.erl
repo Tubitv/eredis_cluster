@@ -209,6 +209,17 @@ handle_transaction_result(Result, Version) ->
             eredis_cluster_monitor:refresh_mapping(Version),
             retry;
 
+       Payload when is_list(Payload) ->
+           Pred = fun({error, <<"MOVED ", _/binary>>}) -> true;
+                    (_) -> false
+                 end,
+           case lists:any(Pred, Payload) of
+               false -> Payload;
+               true ->
+                   eredis_cluster_monitor:refresh_mapping(Version),
+                   retry
+           end;
+
         Payload ->
             Payload
     end.
